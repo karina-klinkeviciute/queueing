@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Queue</title>
+</head>
+<body>
+    <h2>Add New Student:</h2>
+    <form method="post" action="/add_student">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required autofocus>
+        <button type="submit">Add Student</button>
+    </form>
+    <h1>Student Queue</h1>
+
+    <h2>New students:</h2>
+    <ul>
+        {% for student in new_students %}
+        <li>{{ student.name }}
+            {% if session.teacher %}
+                <form method="POST" action="/serve_student">
+                    <input type="hidden" name="student_id" value="{{ student.id }}">
+                    <button type="submit">Served</button>
+                </form>
+            {% endif %}
+
+        </li>
+        {% endfor %}
+    </ul>
+
+        <h2>Served students:</h2>
+    <ul>
+        {% for student in served_students %}
+        <li>{{ student.name }}</li>
+        {% endfor %}
+    </ul>
+
+
+
+    <a href="/login">Login as Teacher</a>
+</body>
+</html>
