@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student Queue</title>
+    <title>Studentų eilė konsutacijai</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h2>Add New Student:</h2>
+    <h2>Atsistoti į eilę konsultacijai:</h2>
+    <div class="add-new">
     <form method="post" action="/add_student">
-        <label for="name">Name:</label>
+        <label for="name">Vardas:</label>
         <input type="text" name="name" required autofocus>
-        <button type="submit">Add Student</button>
+        <button type="submit">Į eilę</button>
     </form>
-    <h1>Student Queue</h1>
+    </div>
+    <h1>Eilė</h1>
 
-    <h2>New students:</h2>
     <ul>
         {% for student in new_students %}
-        <li>{{ student.name }}
+        <li class="new-student">{{ student.name }}
             {% if session.teacher %}
                 <form method="POST" action="/serve_student">
                     <input type="hidden" name="student_id" value="{{ student.id }}">
-                    <button type="submit">Served</button>
+                    <button type="submit">✔️ Atlikta</button>
                 </form>
             {% endif %}
 
@@ -27,15 +29,15 @@
         {% endfor %}
     </ul>
 
-        <h2>Served students:</h2>
+        <h2>Pakonsultuoti studentai:</h2>
     <ul>
         {% for student in served_students %}
-        <li>{{ student.name }}</li>
+        <li class="served-student">{{ student.name }}</li>
         {% endfor %}
     </ul>
 
 
 
-    <a href="/login">Login as Teacher</a>
+    <a href="/login">Prisijungimas mokytojui</a>
 </body>
 </html>
