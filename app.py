@@ -12,13 +12,8 @@ migrate = Migrate(app, db)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        if "name" in request.form:
-            name = request.form.get("name")
 
-        elif "student_id" in request.form:
-            student_id = request.form.get("student_id")
-    new_students = Student.query.filter_by(served=False).order_by(Student.id.desc())
+    new_students = Student.query.filter_by(served=False, confirmed=False).order_by(Student.id.desc())
     served_students = Student.query.filter_by(served=True).order_by(Student.id.desc())
     confirmed_students = Student.query.filter_by(confirmed=True, served=False).order_by(Student.id.desc())
     return render_template(
