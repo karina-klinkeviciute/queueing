@@ -17,6 +17,10 @@ li form {
 }
 
 li.new-student {
+    background-color: #709ef6;
+}
+
+li.served-student {
     background-color: #c0cd72;
 }
 

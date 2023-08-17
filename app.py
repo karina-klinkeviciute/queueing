@@ -20,7 +20,13 @@ def index():
             student_id = request.form.get("student_id")
     new_students = Student.query.filter_by(served=False).order_by(Student.id.desc())
     served_students = Student.query.filter_by(served=True).order_by(Student.id.desc())
-    return render_template('index.html', new_students=new_students, served_students=served_students)
+    confirmed_students = Student.query.filter_by(confirmed=True, served=False).order_by(Student.id.desc())
+    return render_template(
+        'index.html',
+        new_students=new_students,
+        served_students=served_students,
+        confirmed_students=confirmed_students
+    )
 
 @app.route('/add_student', methods=['POST'])
 def add_student():
@@ -35,6 +41,14 @@ def serve_student():
     student_id = request.form.get('student_id')
     student = Student.query.get(student_id)
     student.served = True
+    db.session.commit()
+    return redirect(url_for('index'))
+
+@app.route('/confirm_student', methods=['POST'])
+def confirm_student():
+    student_id = request.form.get('student_id')
+    student = Student.query.get(student_id)
+    student.confirmed = True
     db.session.commit()
     return redirect(url_for('index'))
 

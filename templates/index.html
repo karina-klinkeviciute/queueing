@@ -14,11 +14,27 @@
         <button type="submit">Į eilę</button>
     </form>
     </div>
-    <h1>Eilė</h1>
+    <h2>Nauji</h2>
 
     <ul>
         {% for student in new_students %}
         <li class="new-student">{{ student.name }}
+            {% if session.teacher %}
+                <form method="POST" action="/confirm_student">
+                    <input type="hidden" name="student_id" value="{{ student.id }}">
+                    <button type="submit">✔️ Atlikta</button>
+                </form>
+            {% endif %}
+
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Patvirtinti</h2>
+
+    <ul>
+        {% for student in confirmed_students %}
+        <li class="confirmed-student">{{ student.name }}
             {% if session.teacher %}
                 <form method="POST" action="/serve_student">
                     <input type="hidden" name="student_id" value="{{ student.id }}">
@@ -30,7 +46,7 @@
         {% endfor %}
     </ul>
 
-        <h2>Pakonsultuoti studentai:</h2>
+        <h2>Pakonsultuoti</h2>
     <ul>
         {% for student in served_students %}
         <li class="served-student">{{ student.name }}</li>

@@ -5,6 +5,7 @@ db = SQLAlchemy()
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    confirmed = db.Column(db.Boolean, default=False)
     served = db.Column(db.Boolean, default=False)
 
 class Teacher(db.Model):
