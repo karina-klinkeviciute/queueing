@@ -21,7 +21,7 @@
         <li class="new-student">{{ student.name }}
             {% if session.teacher %}
                 <form method="POST" action="/confirm_student">
-                    <input type="hidden" name="student_id" value="{{ student.id }}">
+                    <input type="hidden" class="new-for-alert" name="student_id" value="{{ student.id }}">
                     <button type="submit">✔️ Patvirtinta</button>
                 </form>
             {% endif %}
