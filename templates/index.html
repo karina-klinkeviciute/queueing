@@ -22,7 +22,7 @@
             {% if session.teacher %}
                 <form method="POST" action="/confirm_student">
                     <input type="hidden" name="student_id" value="{{ student.id }}">
-                    <button type="submit">✔️ Atlikta</button>
+                    <button type="submit">✔️ Patvirtinta</button>
                 </form>
             {% endif %}
 
