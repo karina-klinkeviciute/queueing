@@ -13,7 +13,7 @@ migrate = Migrate(app, db)
 @app.route('/', methods=['GET'])
 def index():
 
-    new_students = Student.query.filter((Student.served == False) & (Student.confirmed == False)).order_by(Student.id.desc()).all()
+    new_students = Student.query.filter_by(served=False, confirmed=False).order_by(Student.id.desc()).all()
     served_students = Student.query.filter_by(served=True).order_by(Student.id.desc()).all()
     confirmed_students = Student.query.filter((Student.served == False) & (Student.confirmed is True)).order_by(Student.id.desc()).all()
     return render_template(
