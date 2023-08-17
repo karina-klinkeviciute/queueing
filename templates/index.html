@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="refresh" content="30">
     <title>Studentų eilė konsutacijai</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -9,7 +10,7 @@
     <div class="add-new">
     <form method="post" action="/add_student">
         <label for="name">Vardas:</label>
-        <input type="text" name="name" required autofocus>
+        <input type="text" name="name" id="name" required autofocus>
         <button type="submit">Į eilę</button>
     </form>
     </div>
