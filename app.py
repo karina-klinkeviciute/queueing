@@ -14,7 +14,7 @@ migrate = Migrate(app, db)
 def index():
 
     new_students = Student.query.filter_by(served=False, confirmed=False).order_by(Student.id.desc()).all()
-    confirmed_students = Student.query.filter(served=False, confirmed=True).order_by(Student.id.desc()).all()
+    confirmed_students = Student.query.filter_by(served=False, confirmed=True).order_by(Student.id.desc()).all()
     served_students = Student.query.filter_by(served=True).order_by(Student.id.desc()).all()
     return render_template(
         'index.html',
